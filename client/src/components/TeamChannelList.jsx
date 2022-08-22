@@ -22,9 +22,17 @@ const TeamChannelList = ({ children,  error = false, laoding, type }) => {
         )
     }
 
-  return (
-    <div>TeamChannelList</div>
-  )
+    return (
+        <div className='team-channel-list'>
+            <div className='team-channel-list__header'>
+                <p className='team-channel-list__header__title'>
+                    {type === 'team' ? 'Channels' : 'Direct Message'}
+                </p>
+
+            </div>
+            {children}
+        </div>
+    )
 }
 
 export default TeamChannelList
