@@ -20,11 +20,11 @@ const Sidebar = () => (
     </div>
 );
 
-const CompanyHeader = () => {
+const CompanyHeader = () => (
     <div className = "channel-list__header">
         <h1 className = "channel-list__header__text">Medi Chat</h1>
     </div>
-};
+);
 
 const ChannelListContainer = () => {
   return (
@@ -32,6 +32,16 @@ const ChannelListContainer = () => {
         <Sidebar />
         <div className = "channel-list__list__wrapper">
             <CompanyHeader />
+            <ChannelSearch />
+            <ChannelList 
+                filters={{}}
+                channelRenderFilterFn = { () => {}}
+                List={(listprops) => (
+                    <TeamChannelList 
+                        {...listprops}
+                    />
+                )}
+            />
         </div>
     </>
   )
