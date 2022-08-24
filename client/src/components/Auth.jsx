@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { axios } from 'axios';
 import Cookies from 'universal-cookie';
-import signInImage from '../assets/signup.jpg'
+import signInImage from '../assets/signup.jpg';
+
+const cookies = new Cookies();
 
 const initialState = {
     fullName: '',
@@ -31,7 +33,22 @@ const Auth = () => {
 
         const URL = 'http://localhost:5000/auth';
 
-        const { data } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {})
+        const { data: { token , userId, hashedPassword } } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
+            username, password, fullName, phoneNumber, avatarURL,
+        });
+
+        cookies.set('token', token);
+        cookies.set('username', username);
+        cookies.set('fullName', fullName);
+        cookies.set('userId', userId);
+
+        if(isSignup){
+            cookies.set('phoneNumber', phoneNumber);
+            cookies.set('avatarURL', avatarURL);
+            cookies.set('hashedPassword', hashedPassword);
+        }
+
+        window.location.reload();
     };
 
   return (
