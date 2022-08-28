@@ -92,7 +92,7 @@ const Auth = () => {
                                 />
                             </div>
                         )}
-                        {isSignup && (
+                       {isSignup && (
                             <div className="auth__form-container_fields-content_input">
                                 <label htmlFor="avatarURL">Avatar URL</label>
                                 <input 
