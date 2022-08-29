@@ -27,7 +27,7 @@ app.post('/', ( req, res) => {
     if(type === 'message.new'){
         members
         .filter((member) => member.user_id !== sender.id)
-        .foreach(( { users } ) => {
+        .foreach(( { user } ) => {
             if(!user.online){
                 twilioClient.messages.create({
                     body: `You have a new message from ${message.user.fullName} - ${message.text}`,
